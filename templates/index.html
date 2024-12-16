@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Şifreleme</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        input, textarea { margin: 10px 0; padding: 10px; width: 100%; max-width: 500px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>AES Şifreleme ve Şifre Çözme</h1>
+
+    <form action="/encrypt" method="POST">
+        <label for="metin">Şifrelemek istediğiniz metni girin:</label><br>
+        <textarea id="metin" name="metin" rows="4"></textarea><br>
+        <button type="submit">Şifrele</button>
+    </form>
+
+    {% if sifreli_metin %}
+    <div class="result">
+        <h2>Şifreli Metin:</h2>
+        <textarea rows="4" readonly>{{ sifreli_metin }}</textarea>
+    </div>
+    {% endif %}
+
+    <form action="/decrypt" method="POST">
+        <label for="sifreli_metin">Şifreli metni girin:</label><br>
+        <textarea id="sifreli_metin" name="sifreli_metin" rows="4"></textarea><br>
+        <button type="submit">Şifreyi Çöz</button>
+    </form>
+
+    {% if cozulmus_metin %}
+    <div class="result">
+        <h2>Çözülmüş Metin:</h2>
+        <textarea rows="4" readonly>{{ cozulmus_metin }}</textarea>
+    </div>
+    {% endif %}
+</body>
+</html>
